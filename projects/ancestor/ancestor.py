@@ -45,26 +45,27 @@ def earliest_ancestor(ancestors, starting_node):
     s = Stack()
     # push starting node as a list into the stack
     s.push([starting_node])
+    # starting length
     pathMax = 1
     # we assume the ancestor does not exist so we initialize it via -1
     ancestor = -1
     # keeps looping while size of stack is greater than 0
     while s.size() > 0:
-        print(f'stack: {s.stack}')
         # the array is popped out of the stack
         path = s.pop()
-        print(f"pathMax: {pathMax}, ancestor: {ancestor}, stack: {s.stack}")
         # gets the last number out of the array it popped out
         v = path[-1]
-        print(f'path:{path}, vertex: {v}')
         if (len(path) >= pathMax and v < ancestor) or (len(path) > pathMax):
             # override the earliest ancestor
             ancestor = v
+            # new pathMax is current path
             pathMax = len(path)
-            print(f"answer? {ancestor}, pathmax? {pathMax}")
+        # loop thru vertex neighbors
         for n in g.vertices[v]:
+            # create a new list containing current path
             tempPath = list(path)
-            print(f'tempPath: {tempPath}')
+            # append neighbor
             tempPath.append(n)
+            # push list into stack
             s.push(tempPath)
     return ancestor
