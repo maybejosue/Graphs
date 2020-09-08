@@ -6,37 +6,22 @@ from util import Stack, Queue  # These may come in handy
 
 class Graph:
 
-    """Represent a graph as a dictionary of vertices mapping labels to edges."""
-
     def __init__(self):
         self.vertices = {}
 
     def add_vertex(self, vertex_id):
-        """
-        Add a vertex to the graph.
-        """
         self.vertices[vertex_id] = set()
 
     def add_edge(self, v1, v2):
-        """
-        Add a directed edge to the graph.
-        """
         if v1 in self.vertices and v2 in self.vertices:
             self.vertices[v1].add(v2)
         else:
             print("Vertex does not exist")
 
     def get_neighbors(self, vertex_id):
-        """
-        Get all neighbors (edges) of a vertex.
-        """
         return self.vertices[vertex_id]
 
     def bft(self, starting_vertex):
-        """
-        Print each vertex in breadth-first order
-        beginning from starting_vertex.
-        """
         q = Queue()
         q.enqueue(starting_vertex)
 
@@ -53,10 +38,6 @@ class Graph:
                     q.enqueue(next_vertex)
 
     def dft(self, starting_vertex):
-        """
-        Print each vertex in depth-first order
-        beginning from starting_vertex.
-        """
         s = Stack()
         s.push(starting_vertex)
 
@@ -73,55 +54,33 @@ class Graph:
                     s.push(next_vertex)
 
     def dft_recursive(self, starting_vertex, visited=None):
-        """
-        Print each vertex in depth-first order
-        beginning from starting_vertex.
-        This should be done using recursion.
-        """
-        # stack and visited as cache in argument ?
-        # start stack
         s = Stack()
-        # push starting node into stack
         s.push(starting_vertex)
 
-        # only start visited if it is not classified
         if visited is None:
             visited = set()
 
-        # if the stack is greater than zero continue processing the stack
         if s.size() > 0:
-            # takes from back of stack list
             a_vertex = s.pop()
 
-            # if we have not seen the node then post it into the visited
             if a_vertex not in visited:
                 visited.add(a_vertex)
                 print(a_vertex)
 
-                # get all the values the node holds connections to
                 for next_vertex in self.get_neighbors(a_vertex):
-                    # push those connections into the back of the stack list
                     s.push(next_vertex)
 
                 self.dft_recursive(s.pop(), visited)
 
     def bfs(self, starting_vertex, destination_vertex):
-        """
-        Return a list containing the shortest path from
-        starting_vertex to destination_vertex in
-        breath-first order.
-        """
         q = Queue()
         q.enqueue([starting_vertex])
 
         visited = set()
 
         while q.size() > 0:
-            # print(f'This the normal que: {q.queue}')
             path = q.dequeue()
-            # print(f'this is the path aka the dequeuer: {path}')
             v = path[-1]
-            # print(f'vertex / node: {v}')
 
             if v not in visited:
                 if v == destination_vertex:
@@ -137,22 +96,14 @@ class Graph:
         return None
 
     def dfs(self, starting_vertex, destination_vertex):
-        """
-        Return a list containing a path from
-        starting_vertex to destination_vertex in
-        depth-first order.
-        """
         s = Stack()
         s.push([starting_vertex])
 
         visited = set()
 
         while s.size() > 0:
-            # print(f'This the normal stack: {s.stack}')
             path = s.pop()
-            # print(f'this is the path aka the top of the stack: {path}')
             v = path[-1]
-            # print(f'vertex / node: {v}')
 
             if v not in visited:
                 if v == destination_vertex:
@@ -168,12 +119,6 @@ class Graph:
         return None
 
     def dfs_recursive(self, starting_vertex, destination_vertex, visited=None, path=None):
-        """
-        Return a list containing a path from
-        starting_vertex to destination_vertex in
-        depth-first order.
-        This should be done using recursion.
-        """
 
         if visited is None:
             visited = set()
