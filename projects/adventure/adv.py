@@ -31,6 +31,15 @@ print(
 
 ###### MY CODE STARTS HERE ######
 
+# loop thru room_graph and check key directions
+custom_map = {}
+copy_room_graph = room_graph
+for key, room in copy_room_graph.items():
+    custom_map[key] = {direction: '?' for direction in room[1]}
+print(custom_map)
+
+# retrace_path function
+
 
 def retrace_path(path):
 
@@ -40,6 +49,8 @@ def retrace_path(path):
     for direction in reversed(path):
         original_position_directions += inverse_path[direction]
     return path + original_position_directions
+
+# stack
 
 
 class Stack():
@@ -58,32 +69,7 @@ class Stack():
     def size(self):
         return len(self.stack)
 
-
-print(room_graph)
-
-
-def dft(self, starting_vertex):
-    s = Stack()
-    s.push(starting_vertex)
-
-    visited = set()
-
-    while s.size() > 0:
-        a_vertex = s.pop()
-
-        if a_vertex not in visited:
-            visited.add(a_vertex)
-            print(a_vertex)
-
-            for next_vertex in self.get_neighbors(a_vertex):
-                s.push(next_vertex)
-
-
-def touch_every_vertex(starting_vertex):
-    pass
-
     ###### CODE ENDS HERE ######
-
 
     # Fill this out with directions to walk
     # traversal_path = ['n', 'n']
@@ -110,12 +96,12 @@ else:
 # ######
 # UNCOMMENT TO WALK AROUND
 # ######
-player.current_room.print_room_description(player)
-while True:
-    cmds = input("-> ").lower().split(" ")
-    if cmds[0] in ["n", "s", "e", "w"]:
-        player.travel(cmds[0], True)
-    elif cmds[0] == "q":
-        break
-    else:
-        print("I did not understand that command.")
+# player.current_room.print_room_description(player)
+# while True:
+#     cmds = input("-> ").lower().split(" ")
+#     if cmds[0] in ["n", "s", "e", "w"]:
+#         player.travel(cmds[0], True)
+#     elif cmds[0] == "q":
+#         break
+#     else:
+#         print("I did not understand that command.")
