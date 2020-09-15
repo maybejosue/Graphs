@@ -45,7 +45,7 @@ def earliest_ancestor(ancestors, starting_node):
     s = Stack()
     # push starting node as a list into the stack
     s.push([starting_node])
-    # starting length
+    # starting length / target node
     pathMax = 1
     # we assume the ancestor does not exist so we initialize it via -1
     ancestor = -1

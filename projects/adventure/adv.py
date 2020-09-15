@@ -1,19 +1,25 @@
 from room import Room
 from player import Player
 from world import World
+from util import Queue, Stack
 
 import random
 from ast import literal_eval
+
+###### MY CODE STARTS HERE ######
+
+###### CODE ENDS HERE ######
+
 
 # Load world
 world = World()
 
 # You may uncomment the smaller graphs for development and testing purposes.
-map_file = "maps/test_line.txt"
+# map_file = "maps/test_line.txt"
 # map_file = "maps/test_cross.txt"
 # map_file = "maps/test_loop.txt"
 # map_file = "maps/test_loop_fork.txt"
-# map_file = "maps/main_maze.txt"
+map_file = "maps/main_maze.txt"
 
 # Loads the map into a dictionary
 room_graph = literal_eval(open(map_file, "r").read())
@@ -29,50 +35,8 @@ print(
 
 # Function to reverse path
 
-###### MY CODE STARTS HERE ######
-
-# loop thru room_graph and check key directions
-custom_map = {}
-copy_room_graph = room_graph
-for key, room in copy_room_graph.items():
-    custom_map[key] = {direction: '?' for direction in room[1]}
-print(custom_map)
-
-# retrace_path function
-
-
-def retrace_path(path):
-
-    original_position_directions = []
-    inverse_path = {'n': 's', 'e': 'w', 's': 'n', 'w': 'e'}
-
-    for direction in reversed(path):
-        original_position_directions += inverse_path[direction]
-    return path + original_position_directions
-
-# stack
-
-
-class Stack():
-    def __init__(self):
-        self.stack = []
-
-    def push(self, value):
-        self.stack.append(value)
-
-    def pop(self):
-        if self.size() > 0:
-            return self.stack.pop()
-        else:
-            return None
-
-    def size(self):
-        return len(self.stack)
-
-    ###### CODE ENDS HERE ######
-
-    # Fill this out with directions to walk
-    # traversal_path = ['n', 'n']
+# Fill this out with directions to walk
+# traversal_path = ['n', 'n']
 traversal_path = []
 
 
